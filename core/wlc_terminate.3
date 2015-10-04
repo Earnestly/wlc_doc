@@ -10,8 +10,8 @@ SYNOPSIS
 
 DESCRIPTION
 
-    wlc_terminate() will send the appropriate signal to terminate the currently
-    configured wlc interface.
+    wlc_terminate() ends any running event loop created with wlc_run(3) and
+    terminates the wlc library.
 
 RETURN VALUE
 
@@ -22,8 +22,8 @@ NOTES
     After the first call to wlc_terminate() any subsequent calls will have no
     effect.
 
-    Calling wlc_terminate() before wlc_init() will have no effect.
+    Calling wlc_terminate() before wlc_init(3) will have no effect.
 
 ALSO SEE
 
-    wlc_init(3)
+    wlc_init(3), wlc_run(3)
