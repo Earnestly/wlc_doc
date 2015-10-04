@@ -12,17 +12,36 @@ DESCRIPTION
     General concepts
 
         Views
-            ...
+
+            Surfaces with interactive roles which handling is left to user of
+            wlc library (usually windows, handled by window manager).
 
         Protocol extensions
+
             xdg-surface
-                ...
+
+                Provides surface role for traditional desktop like behaviour.
+                The extension is still in development, but preferred and is the
+                one that will be used by major DEs (GNOME, KDE, E*).
 
             shell-surface
-                ...
+
+                Deprecated surface role built into libwayland.
+                It's not suitable for desktops and is currently only used by
+                legacy programs and by Qt.
+                <http://wayland.freedesktop.org/docs/html/apa.html#protocol-spec-wl_shell_surface>
 
         Surfaces
-            ...
+
+            Rectangular area that is displayed on the screen. It has a
+            location, size and pixel contents.  wlc's views are surfaces that
+            have interactive role assigned.
+            <http://wayland.freedesktop.org/docs/html/apa.html#protocol-spec-wl_surface>
+
+        Outputs
+
+            Target which containing surfaces are composed to.
+            Output may be physical monitor, remote desktop, render node, etc.
 
 NOTES
 
