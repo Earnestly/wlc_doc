@@ -2,21 +2,33 @@ WLC_VIEW_GET_APP_ID(3)                                   WLC CORE API FUNCTIONS
 
 NAME
 
-    wlc_view_get_app_id
+    wlc_view_get_app_id - get the application identifier for a given view
 
 SYNOPSIS
 
     const char* wlc_view_get_app_id(wlc_handle view);
 
     Wayland protocol requirements:
-        wlc_view_get_app_id(): xdg-surface
+        wlc_view_get_app_id(): xdg_shell
 
 DESCRIPTION
 
-    get app id.
+    wlc_view_get_app_id() can be used to acquire application identifier which
+    identifies the general class of applications to which the view belongs.
+    The compositor can use this to group multiple views together, or to
+    determine how to launch a new application.
+
+    For applications supporting D-Bus activation the application identifier is
+    used as the D-Bus service name.
 
 RETURN VALUE
 
-NOTES
+    wlc_view_get_app_id() returns the application identifier for view if the
+    assigned role for view is xdg-surface.  
 
-EXAMPLE
+    If the role is not xdg-surface then wlc_view_get_app_id() will return NULL.
+
+ALSO SEE
+
+    The XDG Shell protocol extension
+        <http://cgit.freedesktop.org/wayland/weston/tree/protocol/xdg-shell.xml>
