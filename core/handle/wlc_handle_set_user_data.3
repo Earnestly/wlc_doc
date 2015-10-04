@@ -2,7 +2,7 @@ WLC_HANDLE_SET_USER_DATA(3)                              WLC CORE API FUNCTIONS
 
 NAME
 
-    wlc_handle_set_user_data - custom data link ?¿
+    wlc_handle_set_user_data - add user data to the handle
 
 SYNOPSIS
 
@@ -10,10 +10,19 @@ SYNOPSIS
 
 DESCRIPTION
 
-    Link custom data to handle.  Say what?
+    wlc_handle_set_user_data() lets the programmer add arbitrary user data to
+    the handle for later use or inspection.
 
 RETURN VALUE
 
+    None.
+
 NOTES
 
-EXAMPLE
+    If the handle is invalid then wlc_handle_set_user_data() will do nothing.
+    In order to validate that the user data was set one should use 
+    wlc_handle_get_user_data(3).
+
+ALSO SEE
+
+    wlc_handle_get_user_data(3)
