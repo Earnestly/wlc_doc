@@ -2,7 +2,7 @@ WLC_INIT(3)                                              WLC CORE API FUNCTIONS
 
 NAME
 
-    wlc_init - initialize the wlc compositor
+    wlc_init - initialize the wlc library
 
 SYNOPSIS
 
@@ -10,26 +10,25 @@ SYNOPSIS
      
 DESCRIPTION
 
-    wlc_init() initializes the defined interface.  Additionally the argc and
-    argv from main() are passed to provide process renaming, file descriptor
-    passing and a mechanism to clean up if the parent crashes.
+    wlc_init() initializes the wlc library.  Additionally the argc and
+    argv from main() may be passed to facilitate renaming the child process it
+    spawns on wlc_init to "wlc".
 
     The interface provides the necessary hooks into the compositor via the
     wlc_interface structure. 
 
 RETURN VALUE
 
-    wlc_init() will return true if initializating was successful.
+    wlc_init() will return true if initialization was successful.
 
 ERRORS
 
-    If argv is NULL then communication with the parent process will be broken
-    and wlc_init() will fail.
+    wlc_init() will exit with failure if argv is NULL but argc is greater than
+    zero or if the interface is not defined.
 
-ALSO SEE
+NOTES
 
-    wlc_interface.output(3), wlc_interface.view(3), wlc_interface.keyboard(3),
-    wlc_interface.pointer(3), wlc_interface.compositor(3), wlc_interface.input(3)
+    wlc_init() may be called only once during the program's lifetime.
 
 EXAMPLE
 
@@ -42,3 +41,9 @@ EXAMPLE
 
         exit(EXIT_SUCCESS);
     }
+
+ALSO SEE
+
+    wlc_interface.output(3), wlc_interface.view(3), wlc_interface.keyboard(3),
+    wlc_interface.pointer(3), wlc_interface.compositor(3), wlc_interface.input(3)
+
