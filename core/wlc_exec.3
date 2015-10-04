@@ -1,0 +1,31 @@
+WLC_EXEC(3)                                              WLC CORE API FUNCTIONS
+
+NAME
+
+    wlc_exec - exec programs
+
+SYNOPSIS
+
+    void wlc_exec(const char *bin, char *const args[]);
+
+DESCRIPTION
+
+    wlc_exec() will fork a new process with the same working directory as the
+    parent.
+
+RETURN VALUE
+
+    None.
+
+NOTES
+
+    wlc_exec() will send stdout and stderr to /dev/null and calls setsid() if
+    necessary.
+
+EXAMPLE
+
+    #include <stdlib.h>
+    #include <wlc/wlc.h>
+
+    char *terminal = getenv("TERMINAL");
+    wlc_exec(terminal, (char* const*)0);

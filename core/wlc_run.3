@@ -1,0 +1,30 @@
+WLC_RUN(3)                                               WLC CORE API FUNCTIONS
+
+NAME
+
+    wlc_run - run the main event loop
+
+SYNOPSIS
+
+    void wlc_run(void);
+
+DESCRIPTION
+
+    wlc_run() starts the main event loop for the interface initialized by 
+    wlc_init().  wlc_run() should be called after setup routines and
+    wlc_init().
+
+RETURN VALUE
+
+    None.
+
+NOTES
+
+    If wlc_run() is called before wlc_init() then nothing shall happen.
+
+    If wlc_run() is called more than once after wlc_init() then only the first
+    call will have effect.
+
+ALSO SEE
+    
+    wlc_init(3), wlc_terminate(3)

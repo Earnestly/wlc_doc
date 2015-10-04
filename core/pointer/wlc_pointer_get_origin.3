@@ -1,0 +1,23 @@
+WLC_POINTER_GET_ORIGIN(3)                                WLC CORE API FUNCTIONS
+
+NAME
+
+    wlc_pointer_get_origin - aquire mouse pointer position
+
+SYNOPSIS
+
+    void wlc_pointer_get_origin(struct wlc_origin *out_origin);
+
+DESCRIPTION
+
+    Aquire the position of the mouse pointer relative to the currently focused
+    output.  The position returned is relative to the time it was called.
+    
+EXAMPLE
+
+    #include <wlc/wlc.h>
+
+    struct wlc_origin origin;
+
+    wlc_pointer_get_origin(&origin);
+    move_pointer_to_view(view, &origin);

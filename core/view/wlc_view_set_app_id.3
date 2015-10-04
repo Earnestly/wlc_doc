@@ -1,0 +1,25 @@
+WLC_VIEW_SET_APP_ID(3)                                   WLC CORE API FUNCTIONS
+
+NAME
+
+    wlc_view_set_app_id
+
+SYNOPSIS
+
+    bool wlc_view_set_app_id(wlc_handle view, const char *app_id);
+
+    Wayland protocol requirements:
+        wlc_view_set_app_id(): xdg-surface
+
+DESCRIPTION
+
+    Set app id.
+
+RETURN VALUE
+
+    wlc_view_set_app_id() returns false to indicate failure when setting the
+    app id on the view.
+
+NOTES
+
+EXAMPLE

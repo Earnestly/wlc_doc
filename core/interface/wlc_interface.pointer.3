@@ -1,0 +1,62 @@
+WLC_INTERFACE.POINTER(3)                                 WLC CORE API FUNCTIONS
+
+NAME
+
+    wlc_interface.pointer - mouse pointer events
+
+SYNOPSIS
+
+    #include <wlc/wlc.h>
+
+    bool (*button)(wlc_handle view, uint32_t time, const struct wlc_modifiers*, uint32_t button, enum wlc_button_state, const struct wlc_origin*);
+    bool (*scroll)(wlc_handle view, uint32_t time, const struct wlc_modifiers*, uint8_t axis_bits, double amount[2]);
+    bool (*motion)(wlc_handle view, uint32_t time, const struct wlc_origin*);
+
+DESCRIPTION
+
+    The button callback is triggered on button events.  These events are
+    WLC_BUTTON_STATE_PRESSED and WLC_BUTTON_STATE_RELEASED.
+    The button returned is a raw keycode that depends on the operating system
+    or hardware.
+
+    Additional modifiers are set including led state.
+
+    The axis_bits provided to the scroll callback can be used to determine the
+    velocity of the mouse pointer by using a logical and with the value and
+    WLC_SCROLL_AXIS_VERTICAL or WLC_SCROLL_AXIS_HORIZONTAL.
+
+    The amount scrolled is stored in the amount array.  The first element
+    represents the vertical movement and the value stored is the amount it has
+    moved, negative values represent an upward scroll.  For horizontal
+    scrolling the second element represent a leftward direction for negative
+    values and rightward for positive.
+
+    The time represents a timestamp of when the mouse event occured.  It is a
+    magical number and cannot be relied on.
+
+    The origin provides the position of the pointer relative to the currently
+    focused output at the time the event was triggered.
+
+    Finally, all functions will set the value of view to 0 if no views are
+    focused.
+
+RETURN VALUE
+
+    The return value of all functions dictate what is sent to the client.  If
+    the function returns true then the client doesn't see the event, if false
+    the events fall through to the client.
+
+NOTES
+
+    The button codes and behaviour are currently mapped to onto <linux/input.h>
+    and <libinput.h>.
+
+EXAMPLE
+
+    #include <wlc/wlc.h>
+
+    // ...maybe not needed
+
+ALSO SEE
+
+    wlc_interface.view(3), wlc_init(3)

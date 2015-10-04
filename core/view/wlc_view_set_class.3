@@ -1,0 +1,25 @@
+WLC_VIEW_SET_CLASS(3)                                    WLC CORE API FUNCTIONS
+
+NAME
+
+    wlc_view_set_class - set class of shell surface
+
+SYNOPSIS
+
+    bool wlc_view_set_class(wlc_handle view, const char *class_);
+
+    Wayland protocol requirements:
+        wlc_view_set_class(): shell-surface
+
+DESCRIPTION
+
+    Set class.
+
+RETURN VALUE
+
+    wlc_view_set_class() returns false to indicate failure in attempting to set
+    the view class.
+
+NOTES
+
+EXAMPLE

@@ -1,0 +1,44 @@
+WLC_INIT(3)                                              WLC CORE API FUNCTIONS
+
+NAME
+
+    wlc_init - initialize the wlc compositor
+
+SYNOPSIS
+
+    bool wlc_init(const struct wlc_interface *interface, int argc, char *argv[]);
+     
+DESCRIPTION
+
+    wlc_init() initializes the defined interface.  Additionally the argc and
+    argv from main() are passed to provide process renaming, file descriptor
+    passing and a mechanism to clean up if the parent crashes.
+
+    The interface provides the necessary hooks into the compositor via the
+    wlc_interface structure. 
+
+RETURN VALUE
+
+    wlc_init() will return true if initializating was successful.
+
+ERRORS
+
+    If argv is NULL then communication with the parent process will be broken
+    and wlc_init() will fail.
+
+ALSO SEE
+
+    wlc_interface.output(3), wlc_interface.view(3), wlc_interface.keyboard(3),
+    wlc_interface.pointer(3), wlc_interface.compositor(3), wlc_interface.input(3)
+
+EXAMPLE
+
+    #include <stdlib.h>
+    #include <wlc/wlc.h>
+    
+    int main(int argc, char *argv[]) {
+        static struct wlc_interface dummy;
+        wlc_init(&dummy, argc, argv);
+
+        exit(EXIT_SUCCESS);
+    }

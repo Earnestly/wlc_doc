@@ -1,0 +1,29 @@
+WLC_TERMINATE(3)                                         WLC CORE API FUNCTIONS
+
+NAME
+
+    wlc_terminate - terminate the compositor
+
+SYNOPSIS
+
+    void wlc_terminate(void);
+
+DESCRIPTION
+
+    wlc_terminate() will send the appropriate signal to terminate the currently
+    configured wlc interface.
+
+RETURN VALUE
+
+    None.
+
+NOTES
+
+    After the first call to wlc_terminate() any subsequent calls will have no
+    effect.
+
+    Calling wlc_terminate() before wlc_init() will have no effect.
+
+ALSO SEE
+
+    wlc_init(3)

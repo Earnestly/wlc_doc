@@ -1,0 +1,29 @@
+WLC_EVENT_LOOP_ADD_FD(3)                                 WLC CORE API FUNCTIONS
+
+NAME
+
+    wlc_event_loop_add_fd - add file descriptor to event loop
+
+SYNOPSIS
+
+    struct wlc_event_source* wlc_event_loop_add_fd(int fd, uint32_t mask,
+                             int (*cb)(int fd, uint32_t mask, void *arg), 
+                             void *arg);
+
+DESCRIPTION
+
+    wlc_event_loop_add_fd() can be used to add a file descriptor to the event
+    loop created by wlc_run(). 
+
+RETURN VALUE
+
+    None.
+
+NOTES
+
+    The return value of the callback cb is unused however it should return 
+    zero.
+
+ALSO SEE
+
+    wlc_run(3)

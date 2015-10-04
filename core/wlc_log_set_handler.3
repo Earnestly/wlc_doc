@@ -1,0 +1,42 @@
+WLC_LOG_SET_HANDLER(3)                                   WLC CORE API FUNCTIONS
+
+NAME
+
+    wlc_log_set_handler - provides for a callback to a custom log handler
+
+SYNOPSIS
+     
+    void wlc_log_set_handler(void (*cb)(enum wlc_log_type type, const char *str));
+
+DESCRIPTION
+
+    wlc_log_set_handler() allows for the use of a custom log handler if the
+    project requires it.  Without a handler configured wlc will not produce any
+    output.  The argument of wlc_log_type can be one of WLC_LOG_INFO,
+    WLC_LOG_WARN, WLC_LOG_ERROR or WLC_LOG_WAYLAND.
+
+NOTES
+
+    This callback can be configured before or after wlc_init(3) is initialised.
+
+EXAMPLE
+
+    #include <wlc/wlc.h>
+
+    void logger(const char *fmt, ...); 
+
+    static void log_handler(enum wlc_log_type type, const char *str) {
+        switch (type) {
+            case WLC_LOG_INFO:
+            case WLC_LOG_WARN:
+            case WLC_LOG_ERROR:
+            case WLC_LOG_WAYLAND:
+                logger("%s", str);
+         }
+    }
+
+    wlc_log_set_handler(log_handler);
+
+ALSO SEE
+
+    wlc_init(3)

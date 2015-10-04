@@ -1,0 +1,77 @@
+WLC_INTERFACE.OUTPUT(3)                                  WLC CORE API FUNCTIONS
+
+
+NAME
+
+    wlc_interface.output - output creation, management and deletion.
+
+SYNOPSIS
+
+    #include <wlc/wlc.h>
+
+    bool (*created)(wlc_handle output);
+    void (*destroyed)(wlc_handle output);
+    void (*focus)(wlc_handle output, bool focus);
+    void (*resolution)(wlc_handle output, const struct wlc_size *from, const struct wlc_size *to);
+
+DESCRIPTION
+
+    The output hook defines the creation, management and destruction of the
+    output where an output is typically attached to a physical monitor but can
+    also be a virtual display or a render node.
+
+    The created callback creates an output on a given wlc_handle.  If the
+    function returns false this will destroy the output.
+
+    The destroyed callback allows the programmer to monitor events such as
+    output disconnection.  This is called whenever an output is being
+    destroyed.  The wlc_handle(3) is invalid once it completes.
+
+    The focus callback is triggered on gaining or losing focus of an output.
+
+    Finally the resolution callback is called on resolution changes.  The new
+    resolution is updated inside the 'to' structure and the old inside the 
+    'from' structure.
+
+EXAMPLE
+
+    #include <wlc/wlc.h>
+
+    static bool handle_output_creation(wlc_handle output) {
+        if (!output)
+            return false;
+
+        register_new_output(output);
+    }
+
+    static void handle_output_destruction(wlc_handle output) {
+        move_all_windows_to_next_available_output();
+    }
+
+    static void handle_output_focus(wlc_handle output, bool focus) {
+        if (focus)
+            set_focus(output);
+    }
+
+    static void handle_resolution_change(wlc_handle output, const struct wlc_size *from, const struct wlc_size *to) {
+        int area_from = from->w * from->h;
+        int area_to = to->w * to->h;
+
+        if (area_from > area_to)
+            fit_views(output, to);
+    }
+
+    struct wlc_interface interface = {
+        .output = {
+            .created = handle_output_creation,
+            .focus = handle_output_focus,
+            .destroyed = handle_output_destruction,
+            .resolution = handle_resolution_change,
+        },
+    };
+
+    wlc_init(&interface, argc, argv);
+
+ALSO SEE
+
+    wlc_interface.view(3), wlc_init(3)
