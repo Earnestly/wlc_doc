@@ -10,9 +10,8 @@ SYNOPSIS
 
 DESCRIPTION
 
-    wlc_run() starts the main event loop for the interface initialized by 
-    wlc_init().  wlc_run() should be called after setup routines and
-    wlc_init().
+    wlc_run() starts the main event loop created by the wlc_init(3) function.
+    This is terminated with wlc_terminate(3).
 
 RETURN VALUE
 
@@ -22,8 +21,7 @@ NOTES
 
     If wlc_run() is called before wlc_init() then nothing shall happen.
 
-    If wlc_run() is called more than once after wlc_init() then only the first
-    call will have effect.
+    If wlc_run() is called inside the event loop the behaviour is undefined.
 
 ALSO SEE
     
