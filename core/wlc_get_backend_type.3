@@ -2,7 +2,7 @@ WLC_GET_BACKEND_TYPE(3)                                  WLC CORE API FUNCTIONS
 
 NAME
 
-    wlc_get_backend_type - query backend wlc is using
+    wlc_get_backend_type - query which backend wlc is using
 
 SYNOPSIS
 
@@ -13,7 +13,7 @@ DESCRIPTION
     wlc_get_backend_type() can be used to determine which backend the
     compositor is currently running on.  This is useful if the compositor needs
     to know whether it is running nested inside an X11 (Xorg) server or
-    directly on DRM.
+    directly on DRM for example.
 
 RETURN VALUE
 
@@ -22,7 +22,8 @@ RETURN VALUE
 
 NOTES
 
-    WLC_BACKEND_NONE is ...???
+    WLC_BACKEND_NONE shall be returned if wlc_init(3) failed or when
+    wlc_get_backend_type() is called before wlc_init(3).
 
 EXAMPLE
 
@@ -38,4 +39,3 @@ EXAMPLE
         default:
             set_default_prefix(WLC_BIT_MOD_LOGO);
     }
-            
