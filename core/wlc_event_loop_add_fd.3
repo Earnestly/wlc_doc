@@ -13,17 +13,36 @@ SYNOPSIS
 DESCRIPTION
 
     wlc_event_loop_add_fd() can be used to add a file descriptor to the event
-    loop created by wlc_run(). 
+    loop created by wlc_init(3).  The callback is triggered whenever the
+    condition defined in the mask is met.  These conditions are of type
+    wlc_event_bit and have the following values:
+    
+    WLC_EVENT_READABLE
+        When the file descriptor is available for read operations.
+
+    WLC_EVENT_WRITABLE
+        When the file descriptor is available for write operations. 
+
+    WLC_EVENT_HANGUP
+        When the hang up event occurred on the file descriptor, usually
+        indicating a peer has closed their end of a connection.
+        
+    WLC_EVENT_ERROR
+        An error occurred on the file descriptor.
+
 
 RETURN VALUE
 
-    None.
+    wlc_event_loop_add_fd() returns a pointer to a wlc_event_source.
+
+    The return value of the callback is ignored.
 
 NOTES
 
-    The return value of the callback cb is unused however it should return 
-    zero.
-
+    libwayland's implementation is based heavily on epoll(7) and much of its
+    functionality is represented here.  For example, a WLC_EVENT_READABLE bit
+    is equivalent to EPOLLIN defined in epoll_ctl(3).
+    
 ALSO SEE
 
-    wlc_run(3)
+    wlc_init(3)
