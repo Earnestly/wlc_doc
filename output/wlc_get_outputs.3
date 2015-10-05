@@ -2,23 +2,35 @@ wlc_get_outputs(3)                                     WLC OUTPUT API FUNCTIONS
 
 NAME
 
-    wlc_get_outputs - get list of outputs?
+    wlc_get_outputs - get list of outputs
 
 SYNOPSIS
 
-    const wlc_handle* wlc_get_outputs(size_t *out_memb);
+    #include <wlc/wlc.h>
+
+    const wlc_handle* wlc_get_outputs(size_t *out_count);
 
 DESCRIPTION
 
-    wlc_get_outputs() 
-
-    Get outputs. Returned array is a direct reference, careful when moving and
-    destroying handles.
+    wlc_get_outputs() is used to return an array of wlc_handles while setting
+    the out_count parameter to the number of outputs available.
 
 RETURN VALUE
 
- 
+    wlc_get_outputs() returns an array of wlc_handles.
 
 NOTES
 
+    The returned array is a direct reference so care is needed when moving and
+    destroying handles.  If ownership is required the array should be copied
+    instead.
+
 EXAMPLE
+
+    #include <wlc/wlc.h>
+
+    size_t count;
+    const wlc_handle *outputs = wlc_get_outputs(&count);
+
+    for (size_t i = 0; i < count; ++i)
+        wake_up(outputs[i]);
