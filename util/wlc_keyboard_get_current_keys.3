@@ -2,16 +2,18 @@ WLC_KEYBOARD_GET_CURRENT_KEYS(3)                         WLC CORE API FUNCTIONS
 
 NAME
 
-    wlc_keyboard_get_current_keys - number of currently held keys
+    wlc_keyboard_get_current_keys - get list of currently held keys
 
 SYNOPSIS
 
-    const uint32_t* wlc_keyboard_get_current_keys(size_t *out_memb);
+    const uint32_t* wlc_keyboard_get_current_keys(size_t *out_count);
 
 DESCRIPTION
 
+    wlc_keyboard_get_current_keys() is used to list all the currently held keys
+    which is primarily used to detect a correct combinations of keys have been
+    pressed.  The out_count parameter is set to the number of keys pressed.
+
 RETURN VALUE
 
-NOTES
-
-EXAMPLE
+    wlc_keyboard_get_current_keys() returns an array of keys pressed.
