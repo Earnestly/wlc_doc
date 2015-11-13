@@ -8,8 +8,12 @@ SYNOPSIS
 
     #include <wlc/wlc.h>
 
-    bool (*button)(wlc_handle view, uint32_t time, const struct wlc_modifiers*, uint32_t button, enum wlc_button_state, const struct wlc_origin*);
-    bool (*scroll)(wlc_handle view, uint32_t time, const struct wlc_modifiers*, uint8_t axis_bits, double amount[2]);
+    bool (*button)(wlc_handle view, uint32_t time, const struct wlc_modifiers*,
+                   uint32_t button, enum wlc_button_state, const struct wlc_origin*);
+
+    bool (*scroll)(wlc_handle view, uint32_t time, const struct wlc_modifiers*,
+                   uint8_t axis_bits, double amount[2]);
+
     bool (*motion)(wlc_handle view, uint32_t time, const struct wlc_origin*);
 
 DESCRIPTION

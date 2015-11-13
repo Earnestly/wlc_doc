@@ -10,9 +10,13 @@ SYNOPSIS
     #include <wlc/wlc.h>
 
     bool (*created)(wlc_handle output);
+
     void (*destroyed)(wlc_handle output);
+
     void (*focus)(wlc_handle output, bool focus);
-    void (*resolution)(wlc_handle output, const struct wlc_size *from, const struct wlc_size *to);
+
+    void (*resolution)(wlc_handle output, const struct wlc_size *from,
+                       const struct wlc_size *to);
 
 DESCRIPTION
 
@@ -30,7 +34,7 @@ DESCRIPTION
     The focus callback is triggered on gaining or losing focus of an output.
 
     Finally the resolution callback is called on resolution changes.  The new
-    resolution is updated inside the 'to' structure and the old inside the 
+    resolution is updated inside the to structure and the old inside the
     'from' structure.
 
 EXAMPLE
@@ -53,7 +57,9 @@ EXAMPLE
             set_focus(output);
     }
 
-    static void handle_resolution_change(wlc_handle output, const struct wlc_size *from, const struct wlc_size *to) {
+    static void handle_resolution_change(wlc_handle output,
+                                         const struct wlc_size *from,
+                                         const struct wlc_size *to) {
         int area_from = from->w * from->h;
         int area_to = to->w * to->h;
 
