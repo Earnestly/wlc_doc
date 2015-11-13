@@ -1,0 +1,34 @@
+WLC_EVENT_LOOP_ADD_TIMER(3)                                   WLC API FUNCITONS
+
+NAME
+
+    wlc_event_loop_add_timer - add a timer to the event loop
+
+SYNOPSIS
+
+    struct wlc_event_source* wlc_event_loop_add_timer(int (*cb)(void *arg), 
+                                                      void *arg);
+
+DESCRIPTION
+
+    wlc_event_loop_add_timer() is used to add a timer to the wlc_event_loop
+    that can be triggered after a specific interval which set by using the
+    wlc_event_source_timer_update(3) function.
+
+    The callback is only triggered once when the time is met.
+
+    wlc_event_source_remove(3) is used to remove the timer from the
+    wlc_event_loop.
+
+RETURN VALUE
+
+    On success wlc_event_loop_add_timer() returns an opaque wlc_event_source
+    otherwise it shall return NULL.
+
+NOTES
+
+    The return value of the callback cb is unused.
+
+ALSO SEE
+
+    wlc_event_source_timer_update(3), wlc_event_source_remove(3)
