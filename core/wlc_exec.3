@@ -10,8 +10,9 @@ SYNOPSIS
 
 DESCRIPTION
 
-    wlc_exec() will fork a new process with the same working directory as the
-    parent.
+    wlc_exec() will fork and exec a new process defined by bin with the
+    arguments args.  The bin argument cannot be NULL.
+
 
 RETURN VALUE
 
@@ -20,7 +21,8 @@ RETURN VALUE
 NOTES
 
     wlc_exec() will send stdout and stderr to /dev/null and calls setsid() if
-    necessary.
+    necessary.  The new process will inherit the environment from the
+    compositor.
 
 EXAMPLE
 
