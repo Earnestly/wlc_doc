@@ -1,0 +1,27 @@
+WLC_EVENT_SOURCE_TIMER_UPDATE(3)                              WLC API FUNCITONS
+
+NAME
+
+    wlc_event_source_timer_update - set the delay for timer activation
+
+SYNOPSIS
+
+    void wlc_event_source_timer_update(struct wlc_event_source *source, 
+                                       uint32_t ms_delay);
+
+DESCRIPTION
+
+    For a given source, wlc_event_source_timer_update() sets a time in ms
+    according to ms_delay.  This will prime the timer added in the
+    wlc_event_loop_add_timer(3) function which is triggered once the delay
+    reaches zero.
+
+    Setting a ms_delay of zero will disarm the event source.
+
+RETURN VALUE
+
+    None.
+
+ALSO SEE
+
+    wlc_event_loop_add_timer(3), wlc_event_source_remove(3)

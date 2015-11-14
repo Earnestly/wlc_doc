@@ -2,8 +2,8 @@ Rules
 
     1. Do not document implementation details.
 
-    2. Describe the concept and its relationships.  Explain the rational and
-       how it should be used.
+    2. Describe the concept and its relationships. Explain the rational
+       and how it should be used.
 
-    3. If necessary, break rule 1. for rule 2. but describe implementation
-       details in the NOTES section.
+    3. If necessary, break rule 1. for rule 2. but describe
+       implementation details in the NOTES section.
